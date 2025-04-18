@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { BookOpen, FileText, Save, Settings, User } from "lucide-react"
-import Footer from "@/components/footer"
+import Footer from "@/components/footer1"
 
 export default function ProfilePage() {
   const [profileData, setProfileData] = useState({

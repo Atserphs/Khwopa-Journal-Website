@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { Search, Filter, SlidersHorizontal } from "lucide-react"
 import Link from "next/link"
-import Footer from "@/components/footer"
+import Footer from "@/components/footer1"
 
 // Sample data for demonstration
 const sampleArticles = [

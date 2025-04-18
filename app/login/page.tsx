@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Link from "next/link"
-import Footer from "@/components/footer"
+import Footer from "@/components/footer1"
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)

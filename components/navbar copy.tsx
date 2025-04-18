@@ -1,5 +1,4 @@
 "use client"
-
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 
@@ -39,7 +38,7 @@ import {
 } from "lucide-react"
 
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+//import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { UserAvatar } from "@/components/avatar"
 
 
@@ -48,10 +47,6 @@ import { UserAvatar } from "@/components/avatar"
 
 
 export default function Navbar() {
-
-  // ref for button of profile
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
 
   // state initialzing 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -271,7 +266,81 @@ export default function Navbar() {
             {/* Conditional rendering based on login status */}
             {isLoggedIn ? (
               <div className="relative">
-                < UserAvatar />
+                <button
+                  onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                  className="flex items-center focus:outline-none"
+                >
+                  <Avatar className="h-10 w-10 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <AvatarImage src={mockUser.avatar} alt={mockUser.name} />
+                    <AvatarFallback>SJ</AvatarFallback>
+                  </Avatar>
+                </button>
+
+                {/* User Dropdown */}
+                {isUserDropdownOpen && (
+                  <div
+                    ref={userDropdownRef}
+                    className="absolute right-0 mt-2 w-64 bg-white rounded-md shadow-lg overflow-hidden z-50 border border-gray-200"
+                  >
+                    {/* Upper section with user info */}
+                    <div className="p-4 border-b border-gray-200 bg-blue-50">
+                      <div className="flex items-center">
+                        <Avatar className="h-12 w-12 mr-3">
+                          <AvatarImage src={mockUser.avatar} alt={mockUser.name} />
+                          <AvatarFallback>SJ</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <p className="font-medium text-gray-800">{mockUser.name}</p>
+                          <p className="text-xs text-gray-500">{mockUser.id}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Lower section with links */}
+                    <div className="py-2">
+                      <Link
+                        href="/profile"
+                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                        onClick={() => setIsUserDropdownOpen(false)}
+                      >
+                        <User className="h-4 w-4 mr-3" />
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/profile#submissions"
+                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                        onClick={() => setIsUserDropdownOpen(false)}
+                      >
+                        <BookOpen className="h-4 w-4 mr-3" />
+                        My Submissions
+                      </Link>
+                      <Link
+                        href="/notifications"
+                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                        onClick={() => setIsUserDropdownOpen(false)}
+                      >
+                        <Bell className="h-4 w-4 mr-3" />
+                        Notifications
+                      </Link>
+                      <Link
+                        href="/profile#settings"
+                        className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                        onClick={() => setIsUserDropdownOpen(false)}
+                      >
+                        <Settings className="h-4 w-4 mr-3" />
+                        Settings
+                      </Link>
+                      <div className="border-t border-gray-100 my-1"></div>
+                      <button
+                        onClick={toggleLogin}
+                        className="flex items-center w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                      >
+                        <LogOut className="h-4 w-4 mr-3" />
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
               <button
@@ -373,14 +442,11 @@ export default function Navbar() {
             {isLoggedIn ? (
               <>
                 <div className="px-4 py-3 flex items-center">
-                <button
-                  ref={buttonRef}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                >
-                  <span className="text-sm font-medium">R</span>
-                </button>
-                  
-                  <div className="px-2">
+                  <Avatar className="h-8 w-8 mr-3">
+                    <AvatarImage src={mockUser.avatar} alt={mockUser.name} />
+                    <AvatarFallback>SJ</AvatarFallback>
+                  </Avatar>
+                  <div>
                     <p className="font-medium text-gray-800">{mockUser.name}</p>
                     <p className="text-xs text-gray-500">{mockUser.id}</p>
                   </div>
