@@ -4,6 +4,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { Facebook, Twitter, ChevronDown, ChevronUp } from "lucide-react"
 import { useState } from "react"
+import WebsiteLogo from "@/components/ui/logo"
+
 
 export default function Footer2() {
   const [openSection, setOpenSection] = useState<string | null>(null)
@@ -22,18 +24,8 @@ export default function Footer2() {
         {/* Logo and tagline */}
         <div className="mb-8 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start">
-            <div className="mr-2">
-              <div className="w-10 h-12 bg-red-500 rounded-sm flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-6 h-6">
-                  <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2h11A2.5 2.5 0 0 1 20 4.5v15a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 19.5v-15Zm4.085 4.412L14.5 7.729V4.5h-8v4.412ZM6.5 4a.5.5 0 0 0-.5.5v15a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-15a.5.5 0 0 0-.5-.5h-11Z" />
-                </svg>
-              </div>
-            </div>
             <div>
-              <h2 className="text-2xl font-bold">
-                <span className="text-red-500">KHWOPA</span>
-                <span className="text-gray-700">.Journal</span>
-              </h2>
+              < WebsiteLogo />
             </div>
           </div>
           <p className="text-sm text-gray-600 mt-2">

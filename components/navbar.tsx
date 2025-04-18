@@ -21,7 +21,6 @@ import { Input } from "@/components/ui/input"
 import {
   Search,
   Menu,
-  LayoutDashboard,
   X,
   Home,
   Info,
@@ -33,14 +32,17 @@ import {
   User,
   Settings,
   LogOut,
-  BookOpen,
-  Bell,
-  BirdIcon,
+  BookText,
+  Phone,
+  UserPen
 } from "lucide-react"
 
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { UserAvatar } from "@/components/avatar"
+import UserAvatar  from "@/components/avatar"
+import NotificationPanel from "@/components/ui/notification-panel"
+import WebsiteLogo from "@/components/ui/logo"
+import { SidebarLogo } from "@/components/ui/logo"
 
 
 
@@ -173,60 +175,49 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`bg-white border-b border-gray-200 sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "rounded-tl-[0px] rounded-tr-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-md" : "rounded-none"}`}>
+    <nav className={` bg-white sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "rounded-tl-[0px] rounded-tr-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-md" : "rounded-none"}`}>
       <div className="container mx-auto max-w-[1780px] px-2 ">
-        <div className="flex gap-2 md:gap-5 items-center h-16">
+        <div className="flex gap-0 md:gap-5 items-center h-12 md:h-16 ">
 
           {/* Burger Menu */}
           <button
             onClick={() => setIsSidebarOpen(true)}
             className="text-gray-700 hover:text-blue-700 focus:outline-none "
           >
-            <Menu className="w-[1.7rem] h-[1.7rem]" />
+            <Menu className="md:w-[1.7rem] md:h-[1.7rem]" />
           </button>
 
           {/* Logo and Name */}
-          <Link href="/" className="flex  gap-2 items-center mr-10 grow  md:grow-0 ">
-          <div className="relative w-7 md:w-8 aspect-square cursor-pointer">
-              <Image
-                  src="/homepage/logo.png"     
-                  alt="Khwopa Journal Logo" 
-                  fill 
-                  className="object-contain"
-                />
-            </div>
-
-            <span className="text-[1.2rem] md:text-[1.8rem] font-bold text-khwopaRed">
-              KHWOPA<span className="text-[.8rem] md:text-[1.3rem] text-gray-800">.Journal</span>
-            </span>
-          </Link>
+          < WebsiteLogo />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex grow items-center space-x-8">
 
-                          {/* Desktop Search Bar */}
-                          <div className="hidden md:flex items-center space-x-6 flex-1 max-w-xl mx-auto">
+              {/* Desktop Search Bar */}
+              <div className="hidden md:flex items-center space-x-6 flex-1 max-w-xl mx-auto">
                 <div className="relative w-full" ref={searchContainerRef}>
                   <div className="flex items-center border border-gray-300 rounded-full overflow-hidden">
-                    {<Search className="text-gray-200 ml-3" />}
+                    
                     <Input
                       type="text"
                       placeholder="Search by title, authors ..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onFocus={() => setShowSearch(true)}
-                      className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 pl-4 pr-12 py-2 h-10 rounded-full"
+                      className="border-0 focus-visible:ring-0 focus-visible:ring-offset-0 pl-4 pr-12 py-2 h-8 rounded-full"
                     />
+
                     <div className="absolute right-0 flex items-center">
                       {searchQuery && (
-                        <Button variant="ghost" size="icon" className="h-10 w-8" onClick={clearSearch}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" onClick={clearSearch}>
                           <X className="h-4 w-4" />
                         </Button>
                       )}
-                      <Button size="icon" className="h-10 w-10 rounded-r-full bg-red-500 hover:bg-red-600">
-                        <Search className="h-5 w-5 text-white" />
+                      <Button size="icon" className="h-8 w-8 rounded-r-full bg-transparent hover:bg-khwopaRed text-black hover:text-white">
+                        <Search className=" h-5 w-5  " />
                       </Button>
                     </div>
+
                   </div>
 
                   {/* Desktop Search Dropdown */}
@@ -240,17 +231,21 @@ export default function Navbar() {
 
 
               {/* Large nav menu */}
-              <div className="hidden lg:flex gap-1 items-center text-[1rem]">
-                <Link href="/" className="px-4 py-2 rounded-[8px] hover:text-white hover:bg-khwopaRed font-medium">
-                  <FontAwesomeIcon icon={faHouse} className="mr-2 " />
-                  Home
+              <div className="hidden  md:flex gap-1 items-center text-xs_button_font">
+                <Link href="/" className="flex items-center px-2 py-2 rounded-[5px] hover:bg-gray-200 font-medium">
+                  < BookText className="h-4"/>
+                  Journals
                 </Link>
-                <Link href="/about" className="px-4 py-2 rounded-[8px] hover:text-white hover:bg-khwopaRed font-medium">
-                  <FontAwesomeIcon icon={faEject} className="mr-2" />
+                <Link href="/" className="flex items-center px-2 py-2 rounded-[5px] hover:bg-gray-200 font-medium">
+                  < UserPen className="h-4"/>
+                  Authors
+                </Link>
+                <Link href="/about" className="flex items-center px-2 py-2 rounded-[5px] hover:bg-gray-200 font-medium">
+                  < Info className="h-4"/>
                   About Us
                 </Link>
-                <Link href="/contact" className="px-4 py-2 rounded-[8px] hover:text-white hover:bg-khwopaRed font-medium">
-                  <FontAwesomeIcon icon={faSquarePollHorizontal} className="mr-2" />
+                <Link href="/contact" className="flex items-center px-2 py-2 rounded-[5px] hover:bg-gray-200 font-medium">
+                  < Phone className="h-4"/>
                   Contact Us
                 </Link>
               </div>
@@ -259,23 +254,24 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center p-2 md:hidden ">
-            <button onClick={() => setShowSearch(true)}>
-              <Search className="w-[1.4rem] h-[1.4rem]" />
-            </button>
+          <div className="flex items-center md:hidden ">
+            <Button variant="ghost" size="icon" onClick={() => setShowSearch(true)}>
+              <Search className="w-8 h-8" />
+            </Button>
           </div>
 
           {/* Login button/User/User-dropdrown */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center ">
 
             {/* Conditional rendering based on login status */}
             {isLoggedIn ? (
-              <div className="relative">
-                < UserAvatar />
+              <div className="flex gap-4 ">
+                  < NotificationPanel />
+                  < UserAvatar />
               </div>
             ) : (
               <button
-                className="py-1 px-3 text-[.9rem] rounded-[7px] bg-red-500 text-white border hover:bg-red-600 hover:text-white"
+                className="text-xs_button_font_sd bg-khwopaRed px-2 py-1 md:py-2 md:px-4 md:text-xs_button_font rounded-[5px] md:rounded-[7px] text-white border hover:bg-red-600 hover:text-white"
                 onClick={toggleLogin}
               >
                 Login
@@ -291,7 +287,7 @@ export default function Navbar() {
 
         {/* Sidebar with animation */}
         <div
-          className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-black bg-opacity-40 z-40 transition-opacity duration-300 ${
             isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
           onClick={() => setIsSidebarOpen(false)}
@@ -304,75 +300,77 @@ export default function Navbar() {
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            <span className="text-xl font-bold text-blue-700">
-              Journal<span className="text-gray-800">Hub</span>
-            </span>
+
+          {/* Header of side nav */}
+          <div className="p-4 flex justify-between items-center">
+            < SidebarLogo />
             <button
               onClick={() => setIsSidebarOpen(false)}
-              className="text-gray-700 hover:text-blue-700 focus:outline-none"
+              className="flex items-center p-1 rounded-full bg-white text-gray-700 hover:bg-khwopaRed hover:text-white focus:outline-none"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-5" />
             </button>
           </div>
 
-          <div className="py-4">
-            <div className="px-4 py-2 text-sm font-medium text-gray-500 uppercase">Main</div>
+          <div className="px-2">
+            <div className=" py-2 text-[13px] font-medium text-gray-500 " >Main</div>
             <Link
               href="/"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Home className="h-5 w-5 mr-3" />
+              <Home className="h-4 w-4 mr-2" />
               Home
             </Link>
+            
             <Link
               href="/about"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Info className="h-5 w-5 mr-3" />
+              <Info className="h-4 w-4 mr-3" />
               About Us
             </Link>
+
             <Link
               href="/contact"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Mail className="h-5 w-5 mr-3" />
+              <Mail className="h-4 w-4 mr-3" />
               Contact Us
             </Link>
 
-            <div className="px-4 py-2 mt-4 text-sm font-medium text-gray-500 uppercase">Categories</div>
+            <div className=" py-2 mt-4 text-[13px] font-medium text-gray-500 ">Categories</div>
             <Link
               href="/search?category=Computer%20Science"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Database className="h-5 w-5 mr-3" />
+              <Database className="h-4 w-5 mr-3" />
               Computer Science
             </Link>
             <Link
               href="/search?category=Medicine"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Stethoscope className="h-5 w-5 mr-3" />
+              <Stethoscope className="h-4 w-5 mr-3" />
               Medicine
             </Link>
             <Link
               href="/search?category=Environmental%20Science"
-              className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+              className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
               onClick={() => setIsSidebarOpen(false)}
             >
-              <Globe className="h-5 w-5 mr-3" />
+              <Globe className="h-4 w-5 mr-3" />
               Environmental Science
             </Link>
 
-            <div className="px-4 py-2 mt-4 text-sm font-medium text-gray-500 uppercase">Account</div>
+            <div className=" py-2 mt-4 text-[13px] font-medium text-gray-500 ">Account</div>
             {isLoggedIn ? (
               <>
-                <div className="px-4 py-3 flex items-center">
+                <div className="px-4 py-3 flex items-center text-[14px]">
                 <button
                   ref={buttonRef}
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -387,18 +385,18 @@ export default function Navbar() {
                 </div>
                 <Link
                   href="/profile"
-                  className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                  className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
                   onClick={() => setIsSidebarOpen(false)}
                 >
-                  <User className="h-5 w-5 mr-3" />
+                  <User className="h-4 w-4 mr-3" />
                   My Profile
                 </Link>
                 <Link
                   href="/profile#settings"
-                  className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                  className="flex items-center px-4 py-2 text-[14px] hover:bg-gray-200 rounded-md mt-1 mb-1"
                   onClick={() => setIsSidebarOpen(false)}
                 >
-                  <Settings className="h-5 w-5 mr-3" />
+                  <Settings className="h-4 w-4 mr-3" />
                   Settings
                 </Link>
                 <button
@@ -406,9 +404,9 @@ export default function Navbar() {
                     toggleLogin()
                     setIsSidebarOpen(false)
                   }}
-                  className="flex items-center w-full text-left px-4 py-3 text-red-600 hover:bg-red-50"
+                  className="flex items-center w-full text-[14px] px-4 py-3 text-red-600 hover:bg-red-50"
                 >
-                  <LogOut className="h-5 w-5 mr-3" />
+                  <LogOut className="h-4 w-4 mr-3" />
                   Logout
                 </button>
               </>

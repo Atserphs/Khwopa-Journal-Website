@@ -30,7 +30,7 @@ import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 
-export function UserAvatar() {
+export default function UserAvatar() {
   const [open, setOpen] = useState(false)
   const [animating, setAnimating] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)

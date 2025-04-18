@@ -19,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        xs_button_font: ".8rem",
+        xs_button_font_sd: ".75rem"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
