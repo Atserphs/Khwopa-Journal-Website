@@ -12,7 +12,7 @@ const poppins = Poppins({
   subsets:["latin"]} )
 
 export const metadata: Metadata = {
-  title: "JournalHub - Academic Research Platform",
+  title: "Khwopa Journal - Academic Research Platform",
   description: "Access thousands of peer-reviewed articles across multiple disciplines",
     generator: 'v0.dev'
 }

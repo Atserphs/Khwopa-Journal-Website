@@ -21,7 +21,9 @@ const config = {
     extend: {
       fontSize: {
         xs_button_font: ".8rem",
-        xs_button_font_sd: ".75rem"
+        xs_button_font_sd: ".75rem",
+        section_heading: "1.5rem",
+        section_heading_sd: "1.1rem"
       },
       colors: {
         border: "hsl(var(--border))",

@@ -176,7 +176,7 @@ export default function Navbar() {
 
   return (
     <nav className={` bg-white sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "rounded-tl-[0px] rounded-tr-[0px] rounded-bl-[20px] rounded-br-[20px] shadow-md" : "rounded-none"}`}>
-      <div className="container mx-auto max-w-[1780px] px-2 ">
+      <div className="container mx-auto max-w-[1850px] px-2 ">
         <div className="flex gap-0 md:gap-5 items-center h-12 md:h-16 ">
 
           {/* Burger Menu */}

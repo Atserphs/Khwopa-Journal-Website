@@ -151,24 +151,25 @@ export default function JournalCarousel() {
   const getCardStyle = () => {
     if (isMobile) {
       return {
-        width: "85%", // Show one full card and part of the next
-        marginRight: "5%",
+        width: "95%", // Show one full card and part of the next
+        marginRight: "3%",
       }
     }
     return {}
   }
 
   return (
-    <div className="w-full bg-white py-8 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Poppular Journals</h1>
+    <div className="w-full py-4 md:py-9 ">
+      <h1 className="text-section_heading_sd md:text-section_heading font-semibold text-gray-800 mb-2 md:mb-5">Poppular Journals</h1>
 
-      <div className="relative">
+      
+      <div className="relative group">
         {/* Only show navigation buttons on non-mobile */}
         {!isMobile && (
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className={`absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-3 text-gray-800 shadow-lg ${
+            className={`hidden group-hover:block absolute -left-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-3 text-gray-800 shadow-lg ${
               currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
             aria-label="Previous slide"
@@ -178,7 +179,7 @@ export default function JournalCarousel() {
         )}
 
         <div
-          className="overflow-hidden px-4"
+          className="overflow-hidden px-0 md:px-4"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -187,7 +188,7 @@ export default function JournalCarousel() {
             className="flex transition-transform duration-300 ease-in-out"
             style={{
               transform: isMobile
-                ? `translateX(-${currentIndex * 90}%)`
+                ? `translateX(-${currentIndex * 93}%)`
                 : `translateX(-${currentIndex * (100 / visibleCount)}%)`,
             }}
           >
@@ -197,7 +198,7 @@ export default function JournalCarousel() {
                 className="flex-shrink-0"
                 style={{
                   ...getCardStyle(),
-                  width: isMobile ? "85%" : `${100 / visibleCount}%`,
+                  width: isMobile ? "90%" : `${100 / visibleCount}%`,
                 }}
               >
                 <div className={isMobile ? "pr-0" : "px-3"}>
@@ -213,7 +214,7 @@ export default function JournalCarousel() {
           <button
             onClick={handleNext}
             disabled={currentIndex >= journals.length - visibleCount}
-            className={`absolute -right-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-3 text-gray-800 shadow-lg ${
+            className={`hidden group-hover:block absolute -right-6 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-gray-100 rounded-full p-3 text-gray-800 shadow-lg ${
               currentIndex >= journals.length - visibleCount ? "opacity-50 cursor-not-allowed" : ""
             }`}
             aria-label="Next slide"
@@ -223,7 +224,7 @@ export default function JournalCarousel() {
         )}
       </div>
 
-      {/* Mobile indicator dots */}
+      {/* Mobile indicator dots
       {isMobile && (
         <div className="flex justify-center mt-4 space-x-2">
           {journals.map((_, index) => (
@@ -235,7 +236,7 @@ export default function JournalCarousel() {
             />
           ))}
         </div>
-      )}
+      )*/}
     </div>
   )
 }

@@ -6,6 +6,7 @@ import Footer2 from "@/components/footer2"
 import CategoriesSection from "@/components/categories-section"
 import JournalCarousel from "@/components/journal-carousel"
 import {Banner} from "@/components/banner"
+import TopAuthors from "@/components/top-authors"
 
 export default function Home() {
   return (
@@ -13,8 +14,9 @@ export default function Home() {
       <div className="container p-[10px] py-5 md:p-0 mx-auto max-w-[1780px]">
       < Banner />
       </div>
-      <div className="container mx-auto  py-0 space-y-16 max-w-[1780px]">
+      <div className="container mx-auto px-[20px] md:px-[3rem] py-0 max-w-[1780px]">
         <JournalCarousel />
+        < TopAuthors />
         <CategoriesSection />
       </div>
       <Footer2 />
